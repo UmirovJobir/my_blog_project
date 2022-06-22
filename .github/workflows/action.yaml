@@ -18,8 +18,8 @@ jobs:
         PORT: 22
         script: |
           cd ~
-          cd lesson_project
-          git pull https://github.com/UmirovJobir/my_blog_project.git
+          cd my_blog_project
+          git pull
           docker-compose down
           docker-compose build
           docker-compose up
