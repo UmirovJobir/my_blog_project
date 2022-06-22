@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  django:
+    build: .
+    container_name: django 
+    depends_on:
+      - db
+      - redis
+    environment:
+      - POSRGRES_HOST=db
+      - POSTGRS_DB=postgres
+      - CELERY_BROKER=redis://0.0.0.0:6379/0
+      - CELERY_BACKEND=redis://0.0.0.0:6379/0
+    ports:
+      - "8000:8000"
+  
+  redis:
+    image: redis:5-alpine
+
+  celery:
+    build:
+      context: .
+    command: celery -A blog worker -l INFO
+    environment:
+      - DB_NAME=blog_project
+      - DB_user=postgres
+      - DB_PASS=123
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - django
+      - redis
+
+  db:
+    image: postgres:14.3-alpine
+    hostname: pgdb
+    restart: always
+    environment:
+      - POSTGRES_DB=blog_project
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    ports:
+      - "5432:5432"

@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  django:
+    build: .
+    container_name: django 
+    depends_on:
+      - pgdb
+
+    environment:
+      - SQL_HOST=pgdb
+  
+    ports:
+      - 8000:8000
+  
+
+  pgdb:
+    image: postgres:14.3
+    hostname: pgdb
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
