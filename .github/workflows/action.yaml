@@ -1,0 +1,26 @@
+name: My name
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Executing remote command
+      uses: appleboy/ssh-action@master
+      with:
+        host: 68.183.201.244
+        USERNAME: root
+        PASSWORD: gfhjkm666%GFHJKM
+        PORT: 22
+        script: |
+          cd ~
+          cd lesson_project
+          git pull https://github.com/UmirovJobir/my_blog_project.git
+          docker-compose down
+          docker-compose build
+          docker-compose up
+
