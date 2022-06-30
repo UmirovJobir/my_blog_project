@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4x1%@v_42j13b57po$rjvgyjr60l^hpi8zc&s!42udia=8poiu'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres', 
-        'USER': 'postgres', 
-        'PASSWORD': 'postgres',
-        "HOST": os.environ.get("SQL_HOST"),
-        'PORT': '5432',
+        'NAME': os.environ.get('POSTGRES_DB'), 
+        'USER': os.environ.get('POSTGRES_USER'), 
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST'),    
+        'PORT': os.environ.get('POSTGRES_PORT')
     }
 }
 
@@ -191,8 +191,8 @@ SIMPLE_JWT = {
 #Email settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = "jobirumirovmoliya@gmail.com"
-EMAIL_HOST_PASSWORD = 'jodzozbmgeyjdqvj'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 #REDIS settings

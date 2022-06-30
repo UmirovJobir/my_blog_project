@@ -7,7 +7,6 @@ from .permissions import IsOwnerOrReadOnly
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-from django.core.mail import send_mail
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
@@ -35,7 +34,6 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly,]
  
-
 
 
 class CommentList(generics.ListCreateAPIView):

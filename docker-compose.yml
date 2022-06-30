@@ -5,21 +5,18 @@ services:
     build: .
     container_name: django 
     depends_on:
-      - pgdb
-
-    environment:
-      - SQL_HOST=pgdb
-  
+      - db
     ports:
-      - 8000:8000
+      - "8000:8000"
+    env_file:
+      - .env
   
-
-  pgdb:
-    image: postgres:14.3
-    hostname: pgdb
+  db:
+    image: postgres:13
+    container_name: db
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=blog
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5432:5432
+      - POSTGRES_PASSWORD=123
+    volumes:
+      - .:/code

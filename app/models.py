@@ -40,10 +40,6 @@ class Comment(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         #print(self.get_post_author_email, self.get_commenet_author, self.body)
         send_email.delay(self.get_post_author_email, self.get_commenet_author, self.body)
+        super().save(force_insert, force_update, using, update_fields)
 
-
-
-    # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-    #     send_mail('Hello from PrettyPrinted', f'comment: "{self.body}" to your post: "{self.post}"', 'jobirumirovmoliya@gmail.com',
-    #               [f'{self.get_post_author_email}'], fail_silently=False)
 
