@@ -211,5 +211,5 @@ EMAIL_PORT = 587
 # CELERY_BROKER_URL = os.environ.get('CELERY_BROKER', 'redis://redis:6379/0')
 # CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT', 'redis://redis:6379/0')
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER') #'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_BACKEND') #'redis://127.0.0.1:6379/0'

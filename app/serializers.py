@@ -27,8 +27,8 @@ class PostSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    #comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'posts', 'comments']
+        fields = ['id', 'username', 'posts']

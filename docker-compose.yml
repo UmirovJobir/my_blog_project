@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123
     volumes:
-      - .:/code
+      - blog_db:/var/lib/postgresql/data/
 
   blog_app:
     build: .
@@ -17,7 +17,28 @@ services:
     container_name: blog_app
     depends_on:
       - blog_db
+      - redis
     ports:
       - "8000:8000"
     env_file:
       - .env
+
+  redis:
+    image: redis:6-alpine
+  
+  celery_worker:
+    build: .
+    container_name: django_celery_example_celery_worker
+    command: celery -A blog worker -l INFO
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - blog_db
+    ports:
+      - "6379:6379"
+
+volumes:
+  blog_db: null
