@@ -1,22 +1,23 @@
 version: '3'
 
-services:
-  django:
-    build: .
-    container_name: django 
-    depends_on:
-      - db
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-  
-  db:
+services:  
+  blog_db:
     image: postgres:13
-    container_name: db
+    container_name: blog_db
     environment:
       - POSTGRES_DB=blog
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123
     volumes:
       - .:/code
+
+  blog_app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: blog_app
+    depends_on:
+      - blog_db
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env

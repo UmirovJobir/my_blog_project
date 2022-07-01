@@ -1,7 +1,9 @@
 FROM python:3.10
 
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /code
-COPY requirements.txt ./app
+COPY requirements.txt ./code
 COPY . .
 
 
@@ -14,4 +16,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 COPY entrypoint.sh .
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "sh", "./entrypoint.sh" ]
