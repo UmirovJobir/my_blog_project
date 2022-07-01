@@ -4,6 +4,7 @@ WORKDIR /code
 COPY requirements.txt ./app
 COPY . .
 
+
 RUN apt-get update \
     && apt-get install -yyq netcat
 
