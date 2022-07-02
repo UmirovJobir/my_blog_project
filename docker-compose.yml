@@ -26,6 +26,7 @@ services:
   redis:
     image: redis:6-alpine
   
+  
   celery_worker:
     build: .
     container_name: django_celery_worker
