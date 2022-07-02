@@ -198,7 +198,7 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
-#REDIS settings
+# REDIS settings
 # REDIS_HOST = '0.0.0.0'
 # REDIS_PORT = '6379'
 # CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
@@ -207,9 +207,6 @@ EMAIL_PORT = 587
 # CELERY_ACCEPT_CONTENT = ['application/json']
 # CELERY_TASK_SERIALIZER = 'json'
 # CELERY_RESULT_SERIALIZER = 'json'  
-
-# CELERY_BROKER_URL = os.environ.get('CELERY_BROKER', 'redis://redis:6379/0')
-# CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT', 'redis://redis:6379/0')
 
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER') #'redis://127.0.0.1:6379/0'
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_BACKEND') #'redis://127.0.0.1:6379/0'

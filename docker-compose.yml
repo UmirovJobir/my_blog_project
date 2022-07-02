@@ -28,7 +28,7 @@ services:
   
   celery_worker:
     build: .
-    container_name: django_celery_example_celery_worker
+    container_name: django_celery_worker
     command: celery -A blog worker -l INFO
     volumes:
       - .:/code

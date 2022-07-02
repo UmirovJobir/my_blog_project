@@ -20,6 +20,7 @@ jobs:
           cd ~
           cd my_blog_project
           git pull
+          docker stop $(docker ps -a -q)
           docker-compose down
           docker-compose build
           docker-compose up

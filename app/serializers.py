@@ -16,7 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
     body = serializers.CharField(validators=[LessThanValidator(3), GreaterThanValidator(5000)])
     author = serializers.ReadOnlyField(source='author.username')
     #comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    comments = CommentSerializer(many=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
 
     class Meta:
