@@ -1,9 +1,9 @@
 version: '3'
 
 services:  
-  blog_db:
+  db_for_blog:
     image: postgres:13
-    container_name: blog_db
+    container_name: db_for_blog
     environment:
       - POSTGRES_DB=blog
       - POSTGRES_USER=postgres
@@ -16,7 +16,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     container_name: blog_app
     depends_on:
-      - blog_db
+      - db_for_blog
       - redis
     ports:
       - "8000:8000"
@@ -26,7 +26,7 @@ services:
   redis:
     image: redis:6-alpine
   
-  
+
   celery_worker:
     build: .
     container_name: django_celery_worker
